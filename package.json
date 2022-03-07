@@ -10,14 +10,35 @@
   },
   "scripts": {
     "start": "nodemon ./src/server.js",
-    "seed": "node ./scripts/seedDb.js"
+    "seed": "node ./scripts/seedDb.js",
+    "test": "cross-env NODE_ENV=test jest --runInBand",
+    "pretest": "cross-env NODE_ENV=test npm run seed"
   },
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
     "concurrently": "4.1.0",
-    "nodemon": "1.19.1"
+    "cross-env": "^7.0.3",
+    "eslint": "^6.7.2",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-prettier": "^3.1.1",
+    "jest": "^27.5.1",
+    "nodemon": "1.19.1",
+    "supertest": "^6.2.2"
   },
   "engines": {
     "node": ">=10.16.3"
   },
-  "engineStrict": true
+  "engineStrict": true,
+  "jest": {
+    "testEnvironment": "node",
+    "testTimeout": 20000,
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "setupFilesAfterEnv": [
+      "./jest.setup.js"
+    ]
+  }
 }
